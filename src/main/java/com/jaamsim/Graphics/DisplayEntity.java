@@ -66,6 +66,7 @@ public class DisplayEntity extends Entity {
 	protected static final String LINEAR_CURVE = "Linear";
 	protected static final String BEZIER_CURVE = "Bezier";
 	protected static final String SPLINE_CURVE = "Spline";
+	protected static final String QUADCUBIC_CURVE = "QuadCubic";
 
 
 	@Keyword(description = "The point in the region at which the alignment point of the object is positioned.",
@@ -167,6 +168,7 @@ protected final StringChoiceInput curveTypeInput;
 		curveTypeInput.addChoice(LINEAR_CURVE);
 		curveTypeInput.addChoice(BEZIER_CURVE);
 		curveTypeInput.addChoice(SPLINE_CURVE);
+		curveTypeInput.addChoice(QUADCUBIC_CURVE);
 		this.addInput(curveTypeInput);
 
 		relativeEntity = new RelativeEntityInput("RelativeEntity", "Graphics", null);
@@ -1022,6 +1024,9 @@ protected final StringChoiceInput curveTypeInput;
 		}
 		if (curveTypeInput.getChoice().equals(SPLINE_CURVE)) {
 			return PolylineInfo.CurveType.SPLINE;
+		}
+		if (curveTypeInput.getChoice().equals(QUADCUBIC_CURVE)) {
+			return PolylineInfo.CurveType.QUADCUBIC;
 		}
 		// Error case, should not be possible
 		assert(false);
